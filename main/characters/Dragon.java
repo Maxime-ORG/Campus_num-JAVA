@@ -6,4 +6,9 @@ public class Dragon extends main.characters.Characters {
         this.setAttack(4);
         this.setLife(15);
     }
+
+    @Override
+    public String getType() {
+        return "dragon";
+    }
 }

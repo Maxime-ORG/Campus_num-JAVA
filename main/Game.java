@@ -34,10 +34,30 @@ public class Game {
     }
 
     private void useMysteryBox(Characters myCharacter, MysteryBox myMysteryBox){
-        System.out.println("log :"+myMysteryBox.getMysteryEquipement().getClass());
-        if(myMysteryBox.getMysteryEquipement().getClass().equals("class main.equipement.EquipementOffensif.Epee")){
-            System.out.println(myMysteryBox.getMysteryEquipement().getClass());
-            System.out.println("HOURA");
+        switch (myMysteryBox.getMysteryEquipement().getClass().getSimpleName()) {
+            case "Epee" ->{
+                if(myMysteryBox.getMysteryEquipement().getAttack() > new Epee("Excalibur").getAttack()){
+                    System.out.println(myCharacter.getName()+" prends l'épée");
+                }
+            }
+            case "Massue" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
+            case "Eclair" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
+            case "BouleDeFeu" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
+            case "BouclierAcier" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
+            case "bouclierCuir" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
+            case "PhiltreProtection" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
+            case "PhiltreSoin" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
+            case "GrandesPotions" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
+            case "StandardPotion" ->
+                    System.out.println(myMysteryBox.getMysteryEquipement().getClass());
         }
     }
 

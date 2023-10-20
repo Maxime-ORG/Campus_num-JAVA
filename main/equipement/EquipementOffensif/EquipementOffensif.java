@@ -16,10 +16,11 @@ public abstract class EquipementOffensif extends Equipement {
                 '}';
     }
 
-
+    @Override
     public int getAttack() {
-        return attack;
+        return 0;
     }
+    
 
 
     public void setAttack(int attack) {

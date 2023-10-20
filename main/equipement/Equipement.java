@@ -1,6 +1,6 @@
 package main.equipement;
 
-public class Equipement {
+public abstract class Equipement {
     private String name;
 
     public Equipement(String name){
@@ -13,5 +13,6 @@ public class Equipement {
     public void setName(String name) {
         this.name = name;
     }
+    public abstract int getAttack();
 }
 

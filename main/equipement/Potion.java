@@ -8,6 +8,11 @@ public class Potion extends Equipement{
     }
 
     @Override
+    public int getAttack() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Main.equipement.Potion{" +
                 ", LifeAdd=" + LifeAdd +

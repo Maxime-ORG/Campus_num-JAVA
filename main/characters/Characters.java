@@ -4,7 +4,7 @@ import main.equipement.EquipementDefensif.EquipementDefensif;
 import main.equipement.EquipementOffensif.EquipementOffensif;
 
 public abstract class Characters {
-    private String type;
+
     private String name;
     private int life;
     private int attack;
@@ -15,7 +15,7 @@ public abstract class Characters {
 
     public Characters(String name, String type) {
         this.name = name;
-        this.type = type;
+
     }
 
     public Characters(String name){
@@ -26,9 +26,7 @@ public abstract class Characters {
         this("Maxime", "guerrier");
     }
 
-    public String getType() {
-        return type;
-    }
+    public abstract String getType();
 
     public String getName() {
         return name;
@@ -74,10 +72,6 @@ public abstract class Characters {
         OffensiveItem = offensiveItem;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public void setPosition(int position) {
         Position = position;
     }
@@ -85,7 +79,7 @@ public abstract class Characters {
     @Override
     public String toString() {
         return "Character{" +
-                "type='" + type + '\'' +
+                "type='" + this.getType() + '\'' +
                 ", name='" + name + '\'' +
                 ", life=" + life +
                 ", attack=" + attack +

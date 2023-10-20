@@ -6,5 +6,10 @@ public class Gobelin extends main.characters.Characters{
         this.setAttack(1);
         this.setLife(6);
     }
+
+    @Override
+    public String getType() {
+        return "Gobelin";
+    }
 }
 

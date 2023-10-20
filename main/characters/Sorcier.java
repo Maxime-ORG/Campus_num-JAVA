@@ -6,4 +6,9 @@ public class Sorcier extends main.characters.Characters{
         this.setAttack(2);
         this.setLife(9);
     }
+
+    @Override
+    public String getType() {
+        return "Sorcier";
+    }
 }
