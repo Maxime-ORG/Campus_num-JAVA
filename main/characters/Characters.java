@@ -1,5 +1,6 @@
 package main.characters;
 
+import main.equipement.Equipement;
 import main.equipement.EquipementDefensif.EquipementDefensif;
 import main.equipement.EquipementOffensif.EquipementOffensif;
 
@@ -9,6 +10,7 @@ public abstract class Characters {
     private int currentLife;
     private int maxLife;
     private int attack;
+    private Equipement[] inventory;
     private EquipementOffensif OffensiveItem;
     private EquipementDefensif DefensiveItem;
     private int Position;

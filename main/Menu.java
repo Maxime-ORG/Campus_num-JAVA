@@ -44,14 +44,14 @@ public class Menu {
             } else if (usertype.equals("4")) {
                 if (!(myCharacters == null)) {
                     Game myGame = new Game(myCharacters);
-                    myGame.PlayBigStage();
+                    myGame.play(false);
                 } else {
                     System.out.println("Personnage indisponible, voulez vous un créer un par défault ? (Yes/No)");
                     usertype = clavier.nextLine();
                     if (usertype.equalsIgnoreCase("yes") || usertype.equalsIgnoreCase("y")) {
                         myCharacters = new Guerriers("Maxime");
                         Game myGame = new Game(myCharacters);
-                        myGame.PlayBigStage();
+                        myGame.play(false);
                     }
                 }
             } else if (usertype.equals("EXIT")) {
@@ -153,7 +153,8 @@ public class Menu {
         } else if (!name.isEmpty()) {
             myCharacters = new Guerriers(name);
         } else {
-            myCharacters = new Guerriers("Maxime");
+            myCharacters = new Guerriers("cheated hero");
+            myCharacters.setAttack(100);
         }
         return myCharacters;
     }

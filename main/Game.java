@@ -9,8 +9,10 @@ import main.stage.MysteryBox;
 import main.stage.Stage;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
+    private Scanner clavier = new Scanner(System.in);
     private Stage myStage;
     private Characters characters;
 
@@ -19,36 +21,27 @@ public class Game {
         characters.setPosition(0);
     }
 
-    public void PlaySmallStage() {
-        setSmallStage();
-        while (characters.getPosition() < myStage.getCells().length && characters.getCurrentLife() > 0) {
-            System.out.println("Case : "+characters.getPosition());
-            if (myStage.getCell(characters.getPosition()).getEnemy() != null) {
-                fight(myStage.getCell(characters.getPosition()).getEnemy(), characters);
-            } else if (myStage.getCell(characters.getPosition()).getMysteryBox() != null) {
-                useMysteryBox(characters, myStage.getCell(characters.getPosition()).getMysteryBox());
-            }
-
-            characters.setPosition(characters.getPosition() + 1);
-        }
-        if (characters.getCurrentLife() > 0){
-            System.out.println("gg");
+    public void play(boolean debug) {
+        if(debug){
+            setdebugStage();
         } else {
-            System.out.println("YOU LOSE");
+            setBigstage();
         }
-    }
-
-    public void PlayBigStage() {
-        setBigstage();
-        while (characters.getPosition() < myStage.getCells().length && characters.getCurrentLife() > 0) {
+        while (characters.getPosition() < myStage.getCells().length && characters.getCurrentLife() > 0) { // if position < taille du plateau ET life > 0
             System.out.println("Case : "+characters.getPosition());
-            if (myStage.getCell(characters.getPosition()).getEnemy() != null) {
-                fight(myStage.getCell(characters.getPosition()).getEnemy(), characters);
-            } else if (myStage.getCell(characters.getPosition()).getMysteryBox() != null) {
-                useMysteryBox(characters, myStage.getCell(characters.getPosition()).getMysteryBox());
+            try{
+                Cell cellTemp = myStage.getCell(characters.getPosition());
+            } catch (java.lang.ArrayIndexOutOfBoundsException tttttt){
+                System.out.println("Out of Bound error -> remise à 0 de la position");
+                characters.setPosition(0);
+            } finally {
+                if (myStage.getCell(characters.getPosition()).getEnemy() != null) { // if ennemy
+                    fight(myStage.getCell(characters.getPosition()).getEnemy(), characters);
+                } else if (myStage.getCell(characters.getPosition()).getMysteryBox() != null) { // if mysterybox
+                    useMysteryBox(characters, myStage.getCell(characters.getPosition()).getMysteryBox());
+                }
+                characters.setPosition(characters.getPosition() + getRandomBetween(1,6));
             }
-
-            characters.setPosition(characters.getPosition() + getRandomBetween(1,6));
         }
         if (characters.getCurrentLife() > 0){
             System.out.println("gg");
@@ -61,20 +54,39 @@ public class Game {
         myMysteryBox.getMysteryEquipement().interact(characters);
     }
 
+
     private void fight(Characters enemy, Characters myCharacter){
-        enemy.setCurrentLife(enemy.getCurrentLife()-(myCharacter.getAttack()+ myCharacter.getOffensiveItem().getAttack()));
-        System.out.println(myCharacter.getName()+" attaque : "+enemy.getName()+" pour un montant de "+(myCharacter.getAttack()+ myCharacter.getOffensiveItem().getAttack())+" hp");
-        if (enemy.getCurrentLife()>0){
-            myCharacter.setCurrentLife(myCharacter.getCurrentLife()-enemy.getAttack());
-            System.out.println(enemy.getName()+" attaque : "+myCharacter.getName()+" pour un montant de "+enemy.getAttack()+" hp");
+        String playerInput;
+        boolean fleeing = false;
+
+        while(enemy.getCurrentLife()>0 && !fleeing){
+            System.out.println("1 - Attaquer le " + enemy.getClass().getSimpleName());
+            System.out.println("2 - Fuir le " + enemy.getClass().getSimpleName());
+            playerInput = clavier.nextLine();
+            if (playerInput.equalsIgnoreCase("1") || playerInput.equalsIgnoreCase("Attaque")){
+                enemy.setCurrentLife(enemy.getCurrentLife()-(myCharacter.getAttack()+ myCharacter.getOffensiveItem().getAttack()));
+                System.out.println(myCharacter.getName()+" attaque "+enemy.getName()+", pour un montant de "+(myCharacter.getAttack()+ myCharacter.getOffensiveItem().getAttack())+" hp");
+                if (enemy.getCurrentLife()>0){
+                    myCharacter.setCurrentLife(myCharacter.getCurrentLife()-enemy.getAttack());
+                    System.out.println(enemy.getName()+" attaque "+myCharacter.getName()+", pour un montant de "+enemy.getAttack()+" hp");
+                }
+            } else if (playerInput.equalsIgnoreCase("2") || playerInput.equalsIgnoreCase("Fuir")) {
+                fleeing = true;
+                characters.setPosition(characters.getPosition()-getRandomBetween(1,6)-100);
+                System.out.println(characters.getName()+" fuis en "+characters.getPosition());
+            } else {
+                System.out.println("... tu fais exprès ?");
+            }
+        }
+        if(enemy.getCurrentLife() <= 0){
+            myStage.setCell(new Cell(), characters.getPosition());
         }
         System.out.println("Hero : "+myCharacter);
         System.out.println("Enemy : "+enemy);
     }
 
-    
 
-    private void setSmallStage(){
+    private void setdebugStage(){
         myStage = new Stage(10);
         myStage.setCell(new Cell().setAndGetMysteryBox(new MysteryBox(7)),1);
         myStage.setCell(new Cell().setandGetEnemy(new Dragon("Gablurb !!!!")),2);

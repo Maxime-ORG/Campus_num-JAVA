@@ -1,8 +1,9 @@
-package main.equipement;
+package main.equipement.potion;
 
 import main.characters.Characters;
+import main.equipement.Equipement;
 
-public class Potion extends Equipement{
+public class Potion extends Equipement {
     private int LifeAdd;
 
     public Potion(String name) {

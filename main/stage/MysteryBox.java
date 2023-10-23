@@ -9,8 +9,8 @@ import main.equipement.EquipementOffensif.BouleDeFeu;
 import main.equipement.EquipementOffensif.Eclair;
 import main.equipement.EquipementOffensif.Epee;
 import main.equipement.EquipementOffensif.Massue;
-import main.equipement.GrandesPotions;
-import main.equipement.StandardPotion;
+import main.equipement.potion.GrandesPotions;
+import main.equipement.potion.StandardPotion;
 
 public class MysteryBox {
     private Equipement mysteryEquipement;

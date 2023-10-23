@@ -11,7 +11,7 @@ public abstract class EquipementOffensif extends Equipement {
     }
     @Override
     public String toString() {
-        return "Main.equipement.EquipementOffensif.Main.equipement.EquipementOffensif{" +
+        return "Main.equipement.EquipementOffensif{" +
                 ", attack=" + attack +
                 '}';
     }

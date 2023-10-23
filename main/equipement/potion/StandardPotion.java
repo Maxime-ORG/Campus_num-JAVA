@@ -1,4 +1,4 @@
-package main.equipement;
+package main.equipement.potion;
 
 import main.characters.Characters;
 
@@ -18,6 +18,6 @@ public class StandardPotion extends Potion{
                 myCharacter.setCurrentLife(myCharacter.getMaxLife());
             }
         }
-        System.out.println(myCharacter.getName()+" prends la Super potion et passe de :"+startingLife+"hp à "+myCharacter.getCurrentLife()+"hp");
+        System.out.println(myCharacter.getName()+" prends la potion classique et passe de :"+startingLife+"hp à "+myCharacter.getCurrentLife()+"hp");
     }
 }

@@ -7,12 +7,11 @@ public abstract class EquipementDefensif extends Equipement {
 
     public EquipementDefensif(String name){
         super(name);
-        // this.setEquipementStat();
     }
 
     @Override
     public String toString() {
-        return "Main.equipement.EquipementDefensif.Main.equipement.EquipementDefensif{" +
+        return "MMain.equipement.EquipementDefensif{" +
                 ", defense=" + defense +
                 '}';
     }

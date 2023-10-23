@@ -1,8 +1,6 @@
-package main.equipement;
+package main.equipement.potion;
 
 import main.characters.Characters;
-import main.equipement.EquipementOffensif.EquipementOffensif;
-import main.equipement.EquipementOffensif.Massue;
 
 public class GrandesPotions extends Potion{
     public GrandesPotions(String name){
