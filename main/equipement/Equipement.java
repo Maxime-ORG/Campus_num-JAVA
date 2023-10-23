@@ -1,5 +1,7 @@
 package main.equipement;
 
+import main.characters.Characters;
+
 public abstract class Equipement {
     private String name;
 
@@ -13,6 +15,6 @@ public abstract class Equipement {
     public void setName(String name) {
         this.name = name;
     }
-    public abstract int getAttack();
+    public abstract void interact(Characters myCharacter);
 }
 

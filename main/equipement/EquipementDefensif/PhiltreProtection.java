@@ -1,8 +1,21 @@
 package main.equipement.EquipementDefensif;
 
-public class PhiltreProtection extends EquipementDefensif{
-    public PhiltreProtection(String name){
+import main.characters.Characters;
+
+public class PhiltreProtection extends EquipementDefensif {
+    public PhiltreProtection(String name) {
         super(name);
-        this.setDefense(5);
+        this.setDefense(3);
+    }
+
+    @Override
+    public void interact(Characters myCharacter) {
+        EquipementDefensif myPhiltre = new PhiltreProtection("Protegro");
+        if (myCharacter.getClass().getSimpleName().equalsIgnoreCase("magiciens")) {
+            if (myCharacter.getDefensiveItem().getDefense() <= myPhiltre.getDefense()) {
+                myCharacter.setDefensiveItem(myPhiltre);
+                System.out.println(myCharacter.getName() + " prends le philtre de protection");
+            }
+        }
     }
 }

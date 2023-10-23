@@ -44,14 +44,14 @@ public class Menu {
             } else if (usertype.equals("4")) {
                 if (!(myCharacters == null)) {
                     Game myGame = new Game(myCharacters);
-                    myGame.Play();
+                    myGame.PlayBigStage();
                 } else {
                     System.out.println("Personnage indisponible, voulez vous un créer un par défault ? (Yes/No)");
                     usertype = clavier.nextLine();
                     if (usertype.equalsIgnoreCase("yes") || usertype.equalsIgnoreCase("y")) {
                         myCharacters = new Guerriers("Maxime");
                         Game myGame = new Game(myCharacters);
-                        myGame.Play();
+                        myGame.PlayBigStage();
                     }
                 }
             } else if (usertype.equals("EXIT")) {
@@ -89,7 +89,7 @@ public class Menu {
             } else if (userInput.equals("3")) {
                 System.out.println("entrez la nouvelle vie");
                 int intUserInput = clavier.nextInt();
-                myCharacters.setLife(intUserInput);
+                myCharacters.setCurrentLife(intUserInput);
             } else if (userInput.equals("4")) {
                 System.out.println("entrez la nouvelle attaque");
                 int intUserInput = clavier.nextInt();
@@ -97,38 +97,38 @@ public class Menu {
             } else if (userInput.equals("5")) {
                 System.out.println("entrez le nouveau equipement offensif");
                 if (myCharacters.getType().equalsIgnoreCase("magicien")) {
-                    System.out.println("Main.equipement.EquipementDefensif.Philtre de protection / Main.equipement.EquipementDefensif.Philtre de soin");
+                    System.out.println("Philtre de protection / Philtre de soin");
                     userInput = clavier.nextLine();
-                    if (userInput.equalsIgnoreCase("Main.equipement.EquipementDefensif.Philtre de protection")){
+                    if (userInput.equalsIgnoreCase("Philtre de protection")){
                         myCharacters.setDefensiveItem(new PhiltreProtection(userInput));
-                    } else if (userInput.equalsIgnoreCase("Main.equipement.EquipementDefensif.Philtre de soin")) {
+                    } else if (userInput.equalsIgnoreCase("Philtre de soin")) {
                         myCharacters.setDefensiveItem(new PhiltreSoin(userInput));
                     }
                 } else if (myCharacters.getType().equalsIgnoreCase("guerrier")) {
-                    System.out.println("Main.equipement.EquipementDefensif.Bouclier en acier / Main.equipement.EquipementDefensif.Bouclier en cuir");
+                    System.out.println("Bouclier en acier / Bouclier en cuir");
                     userInput = clavier.nextLine();
-                    if (userInput.equalsIgnoreCase("Main.equipement.EquipementDefensif.Bouclier en acier")){
+                    if (userInput.equalsIgnoreCase("Bouclier en acier")){
                         myCharacters.setDefensiveItem(new BouclierAcier(userInput));
-                    } else if (userInput.equalsIgnoreCase("Main.equipement.EquipementDefensif.Bouclier en cuir")) {
+                    } else if (userInput.equalsIgnoreCase("Bouclier en cuir")) {
                         myCharacters.setDefensiveItem(new BouclierCuir(userInput));
                     }
                 }
             } else if (userInput.equals("6")) {
                 System.out.println("entrez le nouveau equipement defensif");
                 if (myCharacters.getType().equalsIgnoreCase("magicien")) {
-                    System.out.println("Boule de Feu / Main.equipement.EquipementOffensif.Eclair");
+                    System.out.println("Boule de Feu / Eclair");
                     userInput = clavier.nextLine();
                     if (userInput.equalsIgnoreCase("Boule de Feu")){
                         myCharacters.setOffensiveItem(new BouleDeFeu(userInput));
-                    } else if (userInput.equalsIgnoreCase("Main.equipement.EquipementOffensif.Eclair")) {
+                    } else if (userInput.equalsIgnoreCase("Eclair")) {
                         myCharacters.setOffensiveItem(new Eclair(userInput));
                     }
                 } else if (myCharacters.getType().equalsIgnoreCase("guerrier")) {
-                    System.out.println("Main.equipement.EquipementOffensif.Epee / Main.equipement.EquipementOffensif.Massue");
+                    System.out.println("Epee / Massue");
                     userInput = clavier.nextLine();
                     if (userInput.equalsIgnoreCase("epee")){
                         myCharacters.setOffensiveItem(new Epee(userInput));
-                    } else if (userInput.equalsIgnoreCase("Main.equipement.EquipementOffensif.Massue")) {
+                    } else if (userInput.equalsIgnoreCase("Massue")) {
                         myCharacters.setOffensiveItem(new Massue(userInput));
                     }
                 }

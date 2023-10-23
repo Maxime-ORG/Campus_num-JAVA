@@ -1,8 +1,21 @@
 package main.equipement.EquipementDefensif;
 
-public class BouclierAcier  extends Bouclier{
-    public BouclierAcier(String name){
+import main.characters.Characters;
+
+public class BouclierAcier extends Bouclier {
+    public BouclierAcier(String name) {
         super(name);
         this.setDefense(5);
+    }
+
+    @Override
+    public void interact(Characters myCharacter) {
+        EquipementDefensif myShield = new BouclierAcier("Aegis");
+        if (myCharacter.getClass().getSimpleName().equalsIgnoreCase("guerriers")) {
+            if (myCharacter.getDefensiveItem().getDefense() <= myShield.getDefense()) {
+                myCharacter.setDefensiveItem(myShield);
+                System.out.println(myCharacter.getName() + " prends le bouclier en acier");
+            }
+        }
     }
 }

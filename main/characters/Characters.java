@@ -6,7 +6,8 @@ import main.equipement.EquipementOffensif.EquipementOffensif;
 public abstract class Characters {
 
     private String name;
-    private int life;
+    private int currentLife;
+    private int maxLife;
     private int attack;
     private EquipementOffensif OffensiveItem;
     private EquipementDefensif DefensiveItem;
@@ -32,8 +33,8 @@ public abstract class Characters {
         return name;
     }
 
-    public int getLife() {
-        return life;
+    public int getCurrentLife() {
+        return currentLife;
     }
 
     public int getAttack() {
@@ -60,8 +61,8 @@ public abstract class Characters {
         DefensiveItem = defensiveItem;
     }
 
-    public void setLife(int life) {
-        this.life = life;
+    public void setCurrentLife(int currentLife) {
+        this.currentLife = currentLife;
     }
 
     public void setName(String name) {
@@ -76,12 +77,20 @@ public abstract class Characters {
         Position = position;
     }
 
+    public int getMaxLife() {
+        return maxLife;
+    }
+
+    public void setMaxLife(int maxLife) {
+        this.maxLife = maxLife;
+    }
+
     @Override
     public String toString() {
         return "Character{" +
                 "type='" + this.getType() + '\'' +
                 ", name='" + name + '\'' +
-                ", life=" + life +
+                ", life=" + currentLife +
                 ", attack=" + attack +
                 ", OffensiveItem=" + OffensiveItem +
                 ", DefensiveItem=" + DefensiveItem +

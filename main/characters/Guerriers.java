@@ -8,7 +8,8 @@ public class Guerriers extends Characters {
         this.setName(name);
 
         this.setAttack(5);
-        this.setLife(5);
+        this.setCurrentLife(5);
+        this.setMaxLife(5);
         this.setOffensiveItem( new Arme(""));
         this.setDefensiveItem(new Bouclier(""));
     }

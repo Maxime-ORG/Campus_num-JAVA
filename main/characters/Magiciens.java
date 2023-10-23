@@ -8,7 +8,8 @@ public class Magiciens extends Characters {
         this.setName(name);
 
         this.setAttack(8);
-        this.setLife(3);
+        this.setCurrentLife(3);
+        this.setMaxLife(3);
         this.setOffensiveItem(new Sort(""));
         this.setDefensiveItem(new Philtre(""));
     }

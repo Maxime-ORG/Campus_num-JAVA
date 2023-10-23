@@ -17,11 +17,6 @@ public abstract class EquipementDefensif extends Equipement {
                 '}';
     }
 
-    @Override
-    public int getAttack() {
-        return 0;
-    }
-
     public int getDefense() {
         return defense;
     }

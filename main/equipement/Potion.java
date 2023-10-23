@@ -1,5 +1,7 @@
 package main.equipement;
 
+import main.characters.Characters;
+
 public class Potion extends Equipement{
     private int LifeAdd;
 
@@ -7,10 +9,7 @@ public class Potion extends Equipement{
         super(name);
     }
 
-    @Override
-    public int getAttack() {
-        return 0;
-    }
+
 
     @Override
     public String toString() {
@@ -21,5 +20,13 @@ public class Potion extends Equipement{
 
     public void setLifeAdd(int lifeAdd) {
         LifeAdd = lifeAdd;
+    }
+
+    public int getLifeAdd() {
+        return LifeAdd;
+    }
+
+    @Override
+    public void interact(Characters myCharacter){
     }
 }
