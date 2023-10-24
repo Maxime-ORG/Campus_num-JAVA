@@ -18,4 +18,9 @@ public class BouclierAcier extends Bouclier {
             }
         }
     }
+
+    @Override
+    public void displayInvStyle() {
+        System.out.println(this.getName()+", def :"+this.getDefense());
+    }
 }

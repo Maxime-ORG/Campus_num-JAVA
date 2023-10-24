@@ -26,11 +26,13 @@ public class Menu {
     public Characters menuMain() {
         String usertype = "Start";
         while (!usertype.equals("EXIT")) {
+            System.out.println("-------------------------------------------");
             System.out.println("  1  - Créer personnage");
             System.out.println("  2  - Modifier personnage");
             System.out.println("  3  - Afficher personnage");
             System.out.println("  4  - Start");
             System.out.println("EXIT - Quitter");
+            System.out.println("-------------------------------------------");
             usertype = clavier.nextLine();
             if (usertype.equals("1")) {
                 myCharacters = menuCreation();
@@ -64,6 +66,7 @@ public class Menu {
     public Characters menuModification(Characters myCharacters) {
         String userInput = "Start";
         while (!userInput.equals("7")) {
+            System.out.println("-------------------------------------------");
             System.out.println("1 - changer le nom");
             System.out.println("2 - changer le type");
             System.out.println("3 - changer la vie");
@@ -71,6 +74,7 @@ public class Menu {
             System.out.println("5 - changer l'equipement offensif");
             System.out.println("6 - changer l'equipement defensif");
             System.out.println("7 - quitter");
+            System.out.println("-------------------------------------------");
             userInput = clavier.nextLine();
 
 

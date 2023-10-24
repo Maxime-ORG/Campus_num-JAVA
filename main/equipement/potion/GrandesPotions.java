@@ -20,4 +20,9 @@ public class GrandesPotions extends Potion{
         }
         System.out.println(myCharacter.getName()+" prends la Super potion et passe de :"+startingLife+"hp à "+myCharacter.getCurrentLife()+"hp");
     }
+
+    @Override
+    public void displayInvStyle() {
+        System.out.println(this.getName()+", soin="+this.getLifeAdd());
+    }
 }

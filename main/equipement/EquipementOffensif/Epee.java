@@ -18,4 +18,9 @@ public class Epee extends Arme {
             }
         }
     }
+
+    @Override
+    public void displayInvStyle() {
+        System.out.println(this.getName()+", atk :"+this.getAttack());
+    }
 }

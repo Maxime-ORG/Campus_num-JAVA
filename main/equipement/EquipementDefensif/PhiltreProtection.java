@@ -18,4 +18,8 @@ public class PhiltreProtection extends EquipementDefensif {
             }
         }
     }
+    @Override
+    public void displayInvStyle() {
+        System.out.println(this.getName()+", def :"+this.getDefense());
+    }
 }

@@ -3,7 +3,7 @@ package main.equipement.potion;
 import main.characters.Characters;
 import main.equipement.Equipement;
 
-public class Potion extends Equipement {
+public abstract class Potion extends Equipement {
     private int LifeAdd;
 
     public Potion(String name) {
@@ -25,9 +25,5 @@ public class Potion extends Equipement {
 
     public int getLifeAdd() {
         return LifeAdd;
-    }
-
-    @Override
-    public void interact(Characters myCharacter){
     }
 }

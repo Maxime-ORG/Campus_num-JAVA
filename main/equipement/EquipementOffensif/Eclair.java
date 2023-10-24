@@ -18,4 +18,9 @@ public class Eclair extends Sort {
             }
         }
     }
+
+    @Override
+    public void displayInvStyle() {
+        System.out.println(this.getName()+", atk :"+this.getAttack());
+    }
 }

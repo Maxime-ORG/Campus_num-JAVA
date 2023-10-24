@@ -1,7 +1,10 @@
 package main.characters;
 
+import java.util.*;
 import main.equipement.Equipement;
+import main.equipement.EquipementDefensif.BouclierAcier;
 import main.equipement.EquipementDefensif.EquipementDefensif;
+import main.equipement.EquipementOffensif.BouleDeFeu;
 import main.equipement.EquipementOffensif.EquipementOffensif;
 
 public abstract class Characters {
@@ -10,7 +13,7 @@ public abstract class Characters {
     private int currentLife;
     private int maxLife;
     private int attack;
-    private Equipement[] inventory;
+    private LinkedList<Equipement> inventory = new LinkedList<Equipement>();
     private EquipementOffensif OffensiveItem;
     private EquipementDefensif DefensiveItem;
     private int Position;
@@ -18,7 +21,6 @@ public abstract class Characters {
 
     public Characters(String name, String type) {
         this.name = name;
-
     }
 
     public Characters(String name){
@@ -85,6 +87,14 @@ public abstract class Characters {
 
     public void setMaxLife(int maxLife) {
         this.maxLife = maxLife;
+    }
+
+    public LinkedList<Equipement> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(LinkedList<Equipement> inventory) {
+        this.inventory = inventory;
     }
 
     @Override

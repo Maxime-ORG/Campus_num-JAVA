@@ -10,4 +10,9 @@ public class Sort extends EquipementOffensif {
     @Override
     public void interact(Characters myCharacter){
     }
+
+    @Override
+    public void displayInvStyle() {
+        System.out.println(this);
+    }
 }
