@@ -1,7 +1,9 @@
 package main.characters;
 
 import main.equipement.EquipementDefensif.Bouclier;
+import main.equipement.EquipementDefensif.BouclierCuir;
 import main.equipement.EquipementOffensif.Arme;
+import main.equipement.EquipementOffensif.Massue;
 
 public class Guerriers extends Characters {
     public Guerriers(String name){
@@ -10,8 +12,10 @@ public class Guerriers extends Characters {
         this.setAttack(5);
         this.setCurrentLife(5);
         this.setMaxLife(10);
-        this.setOffensiveItem( new Arme(""));
-        this.setDefensiveItem(new Bouclier(""));
+        this.setOffensiveItem( new Massue(""));
+        this.getOffensiveItem().setAttack(0);
+        this.setDefensiveItem(new BouclierCuir(""));
+        this.getDefensiveItem().setDefense(0);
     }
 
     @Override

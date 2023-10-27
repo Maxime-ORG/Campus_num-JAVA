@@ -16,6 +16,6 @@ public abstract class Equipement implements InventoryKit {
     public void setName(String name) {
         this.name = name;
     }
-    public abstract void interact(Characters myCharacter);
+
 }
 

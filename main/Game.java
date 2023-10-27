@@ -28,9 +28,6 @@ public class Game {
         characters.setPosition(0);
     }
 
-    private void setMyPlateau(){
-        plateau.add((Case) new Arme("test"));
-    }
 
     public void play(boolean debug) {
         if(debug){
@@ -138,6 +135,23 @@ public class Game {
             }
         }
     }
+    
+    private void useItem(){
+        boolean exitUseItem = false;
+        String playerInput = null;
+        while (!exitUseItem){
+            System.out.println("----------------  use item  ---------------");
+            System.out.println("index de l'item à utiliser");
+            System.out.println("EXIT - quitter");
+            System.out.println("-------------------------------------------");
+            playerInput = clavier.nextLine();
+            if(playerInput.equalsIgnoreCase("EXIT")){
+                exitUseItem = true;
+            } else if (isInteger(playerInput)) {
+                characters.getInventory().get(Integer.parseInt(playerInput)).interact(characters);
+            }
+        }
+    }
 
     private void displayInventory(){
         int indexInventory = 0;
@@ -150,29 +164,20 @@ public class Game {
         }
     }
 
-    private void useItem(){
-        boolean exitUseItem= false;
-        String playerInput;
-        while (!exitUseItem){
-            System.out.println("----------------  Item use  ---------------");
-            System.out.println("1 - Afficher item à l'index ");
-            System.out.println("2 - Utiliser item à l'index");
-            System.out.println("3 - Afficher vos stats");
-            System.out.println("4 - Quitter");
-            System.out.println("-------------------------------------------");
-            playerInput = clavier.nextLine();
-            if (playerInput.equalsIgnoreCase("1") || playerInput.equalsIgnoreCase("Afficher item")){
+    public static boolean isInteger(String s) {
+        return isInteger(s,10);
+    }
 
-            } else if (playerInput.equalsIgnoreCase("2") || playerInput.equalsIgnoreCase("Utiliser item")|| playerInput.equalsIgnoreCase("Utiliser")){
-                System.out.println("WIP");
-            } else if (playerInput.equalsIgnoreCase("3") || playerInput.equalsIgnoreCase("Afficher vos stats")|| playerInput.equalsIgnoreCase("stat")){
-                System.out.println(characters);
-            } else if (playerInput.equalsIgnoreCase("4") || playerInput.equalsIgnoreCase("quitter")){
-                exitUseItem = true;
-            } else {
-                System.out.println("...");
+    public static boolean isInteger(String s, int radix) {
+        if(s.isEmpty()) return false;
+        for(int i = 0; i < s.length(); i++) {
+            if(i == 0 && s.charAt(i) == '-') {
+                if(s.length() == 1) return false;
+                else continue;
             }
+            if(Character.digit(s.charAt(i),radix) < 0) return false;
         }
+        return true;
     }
 
     public static int getRandomBetween(int min, int max){
