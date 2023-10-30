@@ -1,9 +1,6 @@
 package main.equipement.EquipementOffensif;
 
-import main.Case;
-import main.characters.Characters;
-
-public abstract class Arme extends EquipementOffensif implements Case {
+public abstract class Arme extends EquipementOffensif {
     public Arme(String name) {
         super(name);
     }

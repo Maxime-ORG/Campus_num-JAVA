@@ -1,12 +1,20 @@
 package main.equipement.EquipementDefensif;
 
+import main.ItemVisitor;
+import main.ItemElement;
 import main.characters.Characters;
 
-public class BouclierAcier extends Bouclier {
+public class BouclierAcier extends Bouclier implements ItemElement {
     public BouclierAcier(String name) {
         super(name);
         this.setDefense(5);
     }
+
+    @Override
+    public void accept(ItemVisitor v) {
+        v.visit(this);
+    }
+
 
     @Override
     public void interact(Characters myCharacter) {

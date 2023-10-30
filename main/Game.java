@@ -22,7 +22,6 @@ public class Game {
     private Stage myStage;
     private Characters characters;
 
-    private ArrayList<Case> plateau;
     public Game(Characters pCharacter){
         characters = pCharacter;
         characters.setPosition(0);
@@ -39,7 +38,7 @@ public class Game {
             System.out.println("Case : "+characters.getPosition());
             try{
                 Cell cellTemp = myStage.getCell(characters.getPosition());
-            } catch (java.lang.ArrayIndexOutOfBoundsException tttt){
+            } catch (java.lang.ArrayIndexOutOfBoundsException myAAAAwesomeException){
                 System.out.println("Out of Bound error -> remise à 0 de la position");
                 characters.setPosition(0);
             } finally {
