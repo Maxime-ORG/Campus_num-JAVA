@@ -1,5 +1,6 @@
 package main;
 
+import main.databaseConnections.DatabaseConnections;
 import main.equipement.EquipementDefensif.BouclierAcier;
 import main.equipement.EquipementDefensif.BouclierCuir;
 import main.equipement.EquipementDefensif.PhiltreProtection;
@@ -13,11 +14,22 @@ import main.characters.Guerriers;
 import main.characters.Magiciens;
 import main.stage.Stage;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
     private Characters myCharacters;
     private Scanner clavier = new Scanner(System.in);
+    private DatabaseConnections dbCon;
+
+    {
+        try {
+            dbCon = new DatabaseConnections();
+        } catch (SQLException e) {
+            System.out.println("erreur de connection à la BDD");
+            dbCon = null;
+        }
+    }
 
     public Menu() {
 
@@ -34,30 +46,25 @@ public class Menu {
             System.out.println("EXIT - Quitter");
             System.out.println("-------------------------------------------");
             usertype = clavier.nextLine();
-            if (usertype.equals("1")) {
-                myCharacters = menuCreation();
-
-            } else if (usertype.equals("2")) {
-                myCharacters = menuModification(myCharacters);
-
-            } else if (usertype.equals("3")) {
-                System.out.println("Mon personnage : " + myCharacters.toString());
-
-            } else if (usertype.equals("4")) {
-                if (!(myCharacters == null)) {
-                    Game myGame = new Game(myCharacters);
-                    myGame.play(false);
-                } else {
-                    System.out.println("Personnage indisponible, voulez vous un créer un par défault ? (Yes/No)");
-                    usertype = clavier.nextLine();
-                    if (usertype.equalsIgnoreCase("yes") || usertype.equalsIgnoreCase("y")) {
-                        myCharacters = new Guerriers("Maxime");
+            switch (usertype) {
+                case "1" -> myCharacters = menuCreation();
+                case "2" -> myCharacters = menuModification(myCharacters);
+                case "3" -> System.out.println("Mon personnage : " + myCharacters.toString());
+                case "4" -> {
+                    if (!(myCharacters == null)) {
                         Game myGame = new Game(myCharacters);
                         myGame.play(false);
+                    } else {
+                        System.out.println("Personnage indisponible, voulez vous un créer un par défault ? (Yes/No)");
+                        usertype = clavier.nextLine();
+                        if (usertype.equalsIgnoreCase("yes") || usertype.equalsIgnoreCase("y")) {
+                            myCharacters = new Guerriers("Maxime");
+                            Game myGame = new Game(myCharacters);
+                            myGame.play(false);
+                        }
                     }
                 }
-            } else if (usertype.equals("EXIT")) {
-                System.out.println("Merci d'avoir joué, Bye Bye !");
+                case "EXIT" -> System.out.println("Merci d'avoir joué, Bye Bye !");
             }
         }
         return myCharacters;
@@ -78,62 +85,69 @@ public class Menu {
             userInput = clavier.nextLine();
 
 
-            if (userInput.equals("1")) {
-                System.out.println("entrez le nouveau nom");
-                userInput = clavier.nextLine();
-                myCharacters.setName(userInput);
-            } else if (userInput.equals("2")) {
-                System.out.println("entrez le nouveau type");
-                userInput = clavier.nextLine();
-                if(userInput.equalsIgnoreCase("guerrier")){
-                    myCharacters = new Guerriers(myCharacters.getName());
-                } else if (userInput.equalsIgnoreCase("magicien")) {
-                    myCharacters = new Magiciens(myCharacters.getName());
+            switch (userInput) {
+                case "1" -> {
+                    System.out.println("entrez le nouveau nom");
+                    userInput = clavier.nextLine();
+                    myCharacters.setName(userInput);
                 }
-            } else if (userInput.equals("3")) {
-                System.out.println("entrez la nouvelle vie");
-                int intUserInput = clavier.nextInt();
-                myCharacters.setCurrentLife(intUserInput);
-            } else if (userInput.equals("4")) {
-                System.out.println("entrez la nouvelle attaque");
-                int intUserInput = clavier.nextInt();
-                myCharacters.setAttack(intUserInput);
-            } else if (userInput.equals("5")) {
-                System.out.println("entrez le nouveau equipement offensif");
-                if (myCharacters.getType().equalsIgnoreCase("magicien")) {
-                    System.out.println("Philtre de protection / Philtre de soin");
+                case "2" -> {
+                    System.out.println("entrez le nouveau type");
                     userInput = clavier.nextLine();
-                    if (userInput.equalsIgnoreCase("Philtre de protection")){
-                        myCharacters.setDefensiveItem(new PhiltreProtection(userInput));
-                    } else if (userInput.equalsIgnoreCase("Philtre de soin")) {
-                        myCharacters.setDefensiveItem(new PhiltreSoin(userInput));
-                    }
-                } else if (myCharacters.getType().equalsIgnoreCase("guerrier")) {
-                    System.out.println("Bouclier en acier / Bouclier en cuir");
-                    userInput = clavier.nextLine();
-                    if (userInput.equalsIgnoreCase("Bouclier en acier")){
-                        myCharacters.setDefensiveItem(new BouclierAcier(userInput));
-                    } else if (userInput.equalsIgnoreCase("Bouclier en cuir")) {
-                        myCharacters.setDefensiveItem(new BouclierCuir(userInput));
+                    if (userInput.equalsIgnoreCase("guerrier")) {
+                        myCharacters = new Guerriers(myCharacters.getName());
+                    } else if (userInput.equalsIgnoreCase("magicien")) {
+                        myCharacters = new Magiciens(myCharacters.getName());
                     }
                 }
-            } else if (userInput.equals("6")) {
-                System.out.println("entrez le nouveau equipement defensif");
-                if (myCharacters.getType().equalsIgnoreCase("magicien")) {
-                    System.out.println("Boule de Feu / Eclair");
-                    userInput = clavier.nextLine();
-                    if (userInput.equalsIgnoreCase("Boule de Feu")){
-                        myCharacters.setOffensiveItem(new BouleDeFeu(userInput));
-                    } else if (userInput.equalsIgnoreCase("Eclair")) {
-                        myCharacters.setOffensiveItem(new Eclair(userInput));
+                case "3" -> {
+                    System.out.println("entrez la nouvelle vie");
+                    int intUserInput = clavier.nextInt();
+                    myCharacters.setCurrentLife(intUserInput);
+                }
+                case "4" -> {
+                    System.out.println("entrez la nouvelle attaque");
+                    int intUserInput = clavier.nextInt();
+                    myCharacters.setAttack(intUserInput);
+                }
+                case "5" -> {
+                    System.out.println("entrez le nouveau equipement offensif");
+                    if (myCharacters.getType().equalsIgnoreCase("magicien")) {
+                        System.out.println("Philtre de protection / Philtre de soin");
+                        userInput = clavier.nextLine();
+                        if (userInput.equalsIgnoreCase("Philtre de protection")) {
+                            myCharacters.setDefensiveItem(new PhiltreProtection(userInput));
+                        } else if (userInput.equalsIgnoreCase("Philtre de soin")) {
+                            myCharacters.setDefensiveItem(new PhiltreSoin(userInput));
+                        }
+                    } else if (myCharacters.getType().equalsIgnoreCase("guerrier")) {
+                        System.out.println("Bouclier en acier / Bouclier en cuir");
+                        userInput = clavier.nextLine();
+                        if (userInput.equalsIgnoreCase("Bouclier en acier")) {
+                            myCharacters.setDefensiveItem(new BouclierAcier(userInput));
+                        } else if (userInput.equalsIgnoreCase("Bouclier en cuir")) {
+                            myCharacters.setDefensiveItem(new BouclierCuir(userInput));
+                        }
                     }
-                } else if (myCharacters.getType().equalsIgnoreCase("guerrier")) {
-                    System.out.println("Epee / Massue");
-                    userInput = clavier.nextLine();
-                    if (userInput.equalsIgnoreCase("epee")){
-                        myCharacters.setOffensiveItem(new Epee(userInput));
-                    } else if (userInput.equalsIgnoreCase("Massue")) {
-                        myCharacters.setOffensiveItem(new Massue(userInput));
+                }
+                case "6" -> {
+                    System.out.println("entrez le nouveau equipement defensif");
+                    if (myCharacters.getType().equalsIgnoreCase("magicien")) {
+                        System.out.println("Boule de Feu / Eclair");
+                        userInput = clavier.nextLine();
+                        if (userInput.equalsIgnoreCase("Boule de Feu")) {
+                            myCharacters.setOffensiveItem(new BouleDeFeu(userInput));
+                        } else if (userInput.equalsIgnoreCase("Eclair")) {
+                            myCharacters.setOffensiveItem(new Eclair(userInput));
+                        }
+                    } else if (myCharacters.getType().equalsIgnoreCase("guerrier")) {
+                        System.out.println("Epee / Massue");
+                        userInput = clavier.nextLine();
+                        if (userInput.equalsIgnoreCase("epee")) {
+                            myCharacters.setOffensiveItem(new Epee(userInput));
+                        } else if (userInput.equalsIgnoreCase("Massue")) {
+                            myCharacters.setOffensiveItem(new Massue(userInput));
+                        }
                     }
                 }
             }
@@ -159,6 +173,13 @@ public class Menu {
         } else {
             myCharacters = new Guerriers("cheated hero");
             myCharacters.setAttack(100);
+        }
+        try {
+            dbCon.insertIntoCharacters(myCharacters);
+        } catch (SQLException e) {
+            System.out.println("erreur à la création de personnage en BDD");
+        } catch (NullPointerException E){
+            System.out.println("erreur à la création de personnage en BDD");
         }
         return myCharacters;
     }
