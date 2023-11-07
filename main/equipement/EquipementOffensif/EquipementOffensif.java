@@ -19,7 +19,6 @@ public abstract class EquipementOffensif extends Equipement {
         return attack;
     }
 
-
     public void setAttack(int attack) {
         this.attack = attack;
     }

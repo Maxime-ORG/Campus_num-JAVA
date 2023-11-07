@@ -2,7 +2,7 @@ package main.equipement.EquipementDefensif;
 
 import main.characters.Characters;
 
-public class PhiltreSoin extends EquipementDefensif {
+public class PhiltreSoin extends Philtre {
     public PhiltreSoin(String name) {
         super(name);
         this.setDefense(1);

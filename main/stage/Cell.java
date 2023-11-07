@@ -28,17 +28,10 @@ public class Cell {
                 '}';
     }
 
-    public void setMysteryBox(MysteryBox mysteryBox) {
-        this.mysteryBox = mysteryBox;
-    }
-
     public Characters getEnemy() {
         return enemy;
     }
 
-    public void setEnemy(Characters enemy) {
-        this.enemy = enemy;
-    }
 
     public MysteryBox getMysteryBox() {
         return mysteryBox;

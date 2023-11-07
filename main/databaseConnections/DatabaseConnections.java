@@ -5,7 +5,7 @@ import main.characters.Characters;
 import main.characters.Guerriers;
 import main.stage.Stage;
 
-public class DatabaseConnections {
+public class  DatabaseConnections {
     static final String DB_URL = "jdbc:mysql://localhost:3306/mydb?verifyServerCertificate=false&useSSL=true";
     static final String USER = "root";
     static final String PASS = "roo";

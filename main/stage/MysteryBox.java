@@ -34,8 +34,4 @@ public class MysteryBox {
     public Equipement getMysteryEquipement() {
         return mysteryEquipement;
     }
-
-    public void setMysteryEquipement(Equipement mysteryEquipement) {
-        this.mysteryEquipement = mysteryEquipement;
-    }
 }

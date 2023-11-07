@@ -112,7 +112,7 @@ public class Menu {
                 }
                 case "5" -> {
                     System.out.println("entrez le nouveau equipement offensif");
-                    if (myCharacters.getType().equalsIgnoreCase("magicien")) {
+                    if (myCharacters instanceof Magiciens) {
                         System.out.println("Philtre de protection / Philtre de soin");
                         userInput = clavier.nextLine();
                         if (userInput.equalsIgnoreCase("Philtre de protection")) {
@@ -120,7 +120,7 @@ public class Menu {
                         } else if (userInput.equalsIgnoreCase("Philtre de soin")) {
                             myCharacters.setDefensiveItem(new PhiltreSoin(userInput));
                         }
-                    } else if (myCharacters.getType().equalsIgnoreCase("guerrier")) {
+                    } else if (myCharacters instanceof Guerriers) {
                         System.out.println("Bouclier en acier / Bouclier en cuir");
                         userInput = clavier.nextLine();
                         if (userInput.equalsIgnoreCase("Bouclier en acier")) {
@@ -132,7 +132,7 @@ public class Menu {
                 }
                 case "6" -> {
                     System.out.println("entrez le nouveau equipement defensif");
-                    if (myCharacters.getType().equalsIgnoreCase("magicien")) {
+                    if (myCharacters instanceof Magiciens) {
                         System.out.println("Boule de Feu / Eclair");
                         userInput = clavier.nextLine();
                         if (userInput.equalsIgnoreCase("Boule de Feu")) {
@@ -140,7 +140,7 @@ public class Menu {
                         } else if (userInput.equalsIgnoreCase("Eclair")) {
                             myCharacters.setOffensiveItem(new Eclair(userInput));
                         }
-                    } else if (myCharacters.getType().equalsIgnoreCase("guerrier")) {
+                    } else if (myCharacters instanceof Guerriers) {
                         System.out.println("Epee / Massue");
                         userInput = clavier.nextLine();
                         if (userInput.equalsIgnoreCase("epee")) {
@@ -182,16 +182,6 @@ public class Menu {
             System.out.println("erreur à la création de personnage en BDD");
         }
         return myCharacters;
-    }
-
-    public void menuStart(Characters myCharacters) {
-        Stage myStage = new Stage(64);
-        myCharacters.setPosition(0);
-        while (myCharacters.getPosition() < myStage.getCells().length) {
-            int dice = Game.getRandomBetween(1, 6);
-            myCharacters.setPosition(myCharacters.getPosition() + dice);
-            System.out.println("ma position : " + myCharacters.getPosition() + " position après le lancer de dé : " + dice);
-        }
     }
 
 }

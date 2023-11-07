@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class Stage {
     private Cell[] cells;
-    public Stage(int size){
+    private Stage(int size){
         constructCells(size);
     }
 

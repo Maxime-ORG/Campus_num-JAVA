@@ -17,9 +17,4 @@ public class Magiciens extends Characters {
         this.setDefensiveItem(new PhiltreSoin(""));
         this.getDefensiveItem().setDefense(0);
     }
-
-    @Override
-    public String getType() {
-        return "Magicien";
-    }
 }

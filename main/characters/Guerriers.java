@@ -18,8 +18,4 @@ public class Guerriers extends Characters {
         this.getDefensiveItem().setDefense(0);
     }
 
-    @Override
-    public String getType() {
-        return "Guerrier";
-    }
 }
